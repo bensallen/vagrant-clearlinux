@@ -1,0 +1,50 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "export_opts":
+      [
+        "--manifest",
+        "--vsys", "0",
+        "--description", "{{user `vm_description`}}",
+        "--version", "{{user `vm_version`}}"
+      ],
+      "format": "ova",
+      "source_path": "clearlinux-base.ovf",
+      "boot_wait": "20s",
+      "ssh_username": "root",
+      "ssh_password": "V@grant!",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "1m",
+      "guest_additions_mode": "attach",
+      "boot_command": [
+        "root<enter><wait>V@grant!<enter><wait>V@grant!<enter><wait>",
+        "mkdir -p /etc/ssh<enter>",
+        "echo \"PermitRootLogin yes\" >> /etc/ssh/sshd_config<enter>"
+      ],
+      "shutdown_command": "/usr/bin/poweroff"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "expect_disconnect": "true",
+      "script": "scripts/00_lts_kernel.sh"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/01_vbox_tools.sh",
+        "scripts/02_vagrant_user.sh",
+        "scripts/03_sshd.sh"
+      ],
+      "pause_before": "5s"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "clear-linux-base.box"
+    }
+  ]
+}
