@@ -10,7 +10,7 @@
         "--version", "{{user `vm_version`}}"
       ],
       "format": "ova",
-      "source_path": "clearlinux-base.ovf",
+      "source_path": "{{user `name`}}.ovf",
       "boot_wait": "20s",
       "ssh_username": "root",
       "ssh_password": "V@grant!",
@@ -44,7 +44,7 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "output": "clear-linux-base.box"
+      "output": "{{user `name`}}.box"
     }
   ]
 }
