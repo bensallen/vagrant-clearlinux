@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
       vb.customize ["modifyvm", :id, "--usb", "on"]
       vb.customize ["modifyvm", :id, "--usbxhci", "on"]
       # Display the VirtualBox GUI when booting the machine
-      vb.gui = true
+      vb.gui = false
     end
   end
 
