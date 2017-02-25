@@ -1,0 +1,6 @@
+.vagrant
+*.img.xz
+*.img
+*.ovf
+*.vmdk
+*.box
