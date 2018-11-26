@@ -1,3 +1,5 @@
+** ARCHIVED, see the more extensive - https://github.com/AntonioMeireles/ClearLinux-packer **
+
 Download the latest live ClearLinux image, and make a Vagrant box for use with VirtualBox.
 
 Requires: 
